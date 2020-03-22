@@ -8,9 +8,11 @@ public class AnotherThread extends Thread {
         System.out.println(ANSI_RED+"Hello from "+currentThread().getName());
         try {
             Thread.sleep(3000);
+            System.out.println(ANSI_RED+currentThread().getName()+"Finished waiting for 3 seconds.");
         } catch (InterruptedException e) {
-            System.out.println(ANSI_RED+"Another thread interrupted me.");
+            System.out.println(ANSI_RED+"Another thread was interrupted.");
+            return;
         }
-        System.out.println(ANSI_RED+"Finished waiting for 3 seconds.");
+        System.out.println(ANSI_RED+currentThread().getName()+"Finished execution.");
     }
 }

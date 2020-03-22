@@ -26,10 +26,18 @@ public class Main {
             @Override
             public void run() {
                 System.out.println(ANSI_CYAN+"Hello from anonymous runnable implementation");
+                try {
+                    myRunnable.join();
+                    System.out.println(ANSI_CYAN+"myRunnable finished execution and myAnonymousRunnable has resumed.");
+                } catch (InterruptedException e) {
+                    System.out.println(ANSI_CYAN+"myAnonymousRunnable was interrupted.");
+                    return;
+                }
             }
         });
 
         myAnonymousRunnable.start();
+        anotherThread.interrupt();
 
         System.out.println(ANSI_PURPLE+"Hello again from the main thread.");
     }
